@@ -48,15 +48,22 @@ def get_user(username: str) -> sqlite3.Row:
     ).fetchone()
 
 
-def create_user(username: str) -> sqlite3.Row:
+def create_user(username: str):
     conn = _get_connection()
-    
-    with conn:
-        conn.execute(
-            "INSERT INTO users (username) VALUES (?)", (username,)
-        )
 
-    return get_user(username) 
+    try:
+        with conn:
+            conn.execute(
+                "INSERT INTO users (username) VALUES (?)",
+                (username,)
+            )
+
+        return get_user(username)
+
+    except Exception as e:
+        import streamlit as st
+        st.error(f"DB ERROR: {e}")
+        raise
 
 
 def get_or_create_user(username: str) -> sqlite3.Row:

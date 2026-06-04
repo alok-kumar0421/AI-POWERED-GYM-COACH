@@ -6,7 +6,7 @@ The system detects body posture, counts repetitions automatically, tracks workou
 
 ## Live Demo
 
-🌐 https://gymai.alokteh.in
+🌐 https://gymai.aloktech.in
 
 ## Features
 
